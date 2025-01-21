@@ -1,0 +1,22 @@
+/* p {
+    color: blue;
+  } */
+
+.para2 {
+  color: blue;
+}
+
+#intro-para {
+  color: red;
+  font-family: Arial;
+  font-weight: 100;
+  font-size: 10pt;
+  border: 1px solid blue;
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.message {
+  color: blue;
+  border: 2px solid black;
+}
