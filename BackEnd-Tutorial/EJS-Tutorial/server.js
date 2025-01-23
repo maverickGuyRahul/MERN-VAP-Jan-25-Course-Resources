@@ -9,6 +9,7 @@ const _dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 5000;
 
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,9 +31,21 @@ app.post('/submit', (req, res) => {
   });
 });
 
+// app.get('/', (req, res) => {
+//   console.log(_dirname);
+//   res.sendFile(_dirname + '/public/FormPage.html');
+// });
+
 app.get('/', (req, res) => {
-  console.log(_dirname);
-  res.sendFile(_dirname + '/public/FormPage.html');
+  res.render('Home', { currentPage: 'home' });
+});
+
+app.get('/aboutus', (req, res) => {
+  res.render('AboutUs', { currentPage: 'aboutus' });
+});
+
+app.get('/contactus', (req, res) => {
+  res.render('ContactUs', { currentPage: 'contactus' });
 });
 
 app.listen(PORT, () => {
