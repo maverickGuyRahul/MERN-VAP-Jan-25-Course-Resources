@@ -2,6 +2,7 @@ import express from 'express';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
+import britishWomenNames from './BritishFemaleNamesList.js';
 
 const _dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -14,6 +15,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //   res.send('<h2> Hello ViMEET </h2>').status(200);
 // });
 
+app.post('/acceptname', (req, res) => {
+  const incomingData = req.body;
+  console.log(incomingData);
+  // console.log(incomingData.name);
+  // console.log(incomingData.cName);
+  const name = incomingData.name;
+  const cName = incomingData.cName;
+  const randomNumber = Math.floor(Math.random() * 100);
+  // console.log(randomNumber);
+  const randomFemaleName =
+    britishWomenNames[Math.floor(Math.random() * britishWomenNames.length)];
+  res.send(
+    `<h1>${name}</h1> and <h1>${randomFemaleName}</h1> have a chemistry of <h1>${randomNumber}%</h1> between them!`
+  );
+});
+
 app.post('/login', (req, res) => {
   const incomingData = req.body;
   console.log(incomingData);
@@ -22,7 +39,7 @@ app.post('/login', (req, res) => {
 
 app.get('/', (req, res) => {
   console.log(_dirname);
-  res.sendFile(_dirname + '/public/loginForm.html');
+  res.sendFile(_dirname + '/public/ChemistryLevelCalculator.html');
 });
 
 app.listen(PORT, () => {
