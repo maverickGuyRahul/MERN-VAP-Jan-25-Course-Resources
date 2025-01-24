@@ -9,6 +9,8 @@ const _dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 5000;
 
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // app.get('/', (req, res) => {
@@ -22,13 +24,11 @@ app.post('/acceptname', (req, res) => {
   // console.log(incomingData.cName);
   const name = incomingData.name;
   const cName = incomingData.cName;
-  const randomNumber = Math.floor(Math.random() * 100);
-  // console.log(randomNumber);
+  const randomPercentage = Math.floor(Math.random() * 100);
+  // console.log(randomPercentage);
   const randomFemaleName =
     britishWomenNames[Math.floor(Math.random() * britishWomenNames.length)];
-  res.send(
-    `<h1>${name}</h1> and <h1>${randomFemaleName}</h1> have a chemistry of <h1>${randomNumber}%</h1> between them!`
-  );
+  res.render('CalculationResult', { passedName: name, randomPercent });
 });
 
 app.post('/login', (req, res) => {
