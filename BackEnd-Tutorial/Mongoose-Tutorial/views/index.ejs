@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Profiles</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1>All User Profiles</h1>
+
+    <!-- Display list of profiles -->
+    <ul>
+      <% profiles.forEach(user => { %>
+      <li>
+        <strong>@<%= user.username %></strong> | <%= user.fullname %> | <%=
+        user.email %> | <%= user.bio %>
+      </li>
+      <% }) %>
+    </ul>
+
+    <!-- Simple form to create a new user profile -->
+    <h2>Create a New User</h2>
+    <form action="/users" method="POST">
+      <label>Username:</label>
+      <input type="text" name="username" required /><br /><br />
+
+      <label>Full Name:</label>
+      <input type="text" name="fullname" required /><br /><br />
+
+      <label>Email:</label>
+      <input type="email" name="email" required /><br /><br />
+
+      <label>Bio:</label>
+      <input type="text" name="bio" /><br /><br />
+
+      <button type="submit">Create User</button>
+    </form>
+  </body>
+</html>
