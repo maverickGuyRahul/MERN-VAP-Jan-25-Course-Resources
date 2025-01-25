@@ -1,8 +1,16 @@
 import mongoose from 'mongoose';
+import mongooseSequence from 'mongoose-sequence';
+
+const AutoIncrement = mongooseSequence(mongoose);
 
 const { Schema, model } = mongoose;
 
+// 1. Define schema
 const userProfileSchema = new Schema({
+  user_id: {
+    type: Number,
+    unique: true,
+  },
   username: {
     type: String,
     required: true,
@@ -31,4 +39,8 @@ const userProfileSchema = new Schema({
   },
 });
 
+// 2. Apply the AutoIncrement plugin to auto-increment 'user_id'
+userProfileSchema.plugin(AutoIncrement, { inc_field: 'user_id' });
+
+// 3. Export Mongoose model
 export default model('UserProfile', userProfileSchema);

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit User</title>
+  </head>
+  <body>
+    <h1>Edit User: <%= user.username %></h1>
+
+    <!-- 
+      The form action is set to /users/:id?_method=PUT 
+      method="POST" is normal HTML. method-override 
+      will detect the _method=PUT and convert this request to PUT. 
+    -->
+    <form action="/users/<%= user._id %>?_method=PUT" method="POST">
+      <div>
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value="<%= user.username %>"
+        />
+      </div>
+
+      <div>
+        <label for="age">Age:</label>
+        <input type="number" name="age" id="age" value="<%= user.age %>" />
+      </div>
+
+      <div>
+        <label for="fullName">Full Name:</label>
+        <input
+          type="text"
+          name="fullName"
+          id="fullName"
+          value="<%= user.fullName %>"
+        />
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="<%= user.email %>" />
+      </div>
+
+      <div>
+        <label for="bio">Bio:</label>
+        <textarea name="bio" id="bio"><%= user.bio %></textarea>
+      </div>
+
+      <button type="submit">Update User</button>
+    </form>
+  </body>
+</html>
